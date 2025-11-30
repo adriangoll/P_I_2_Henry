@@ -1,0 +1,123 @@
+version: 2
+
+models:
+  - name: mart_hecho_ventas
+    description: "Tabla de hechos ventas - granularidad línea de orden"
+    columns:
+      - name: id_hecho_venta
+        description: "PK tabla hechos"
+        tests:
+          - unique
+          - not_null
+      - name: orden_id
+        description: "FK orden"
+        tests:
+          - not_null
+      - name: producto_id
+        description: "FK producto"
+        tests:
+          - not_null
+      - name: cantidad
+        description: "Cantidad vendida"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 10, 20, 50, 100]
+              severity: warn
+      - name: monto_neto
+        description: "Monto neto línea"
+        tests:
+          - not_null
+
+  - name: mart_hecho_pago
+    description: "Tabla de hechos pagos"
+    columns:
+      - name: id_hecho_pago
+        description: "PK tabla hechos pago"
+        tests:
+          - unique
+          - not_null
+      - name: orden_id
+        description: "FK orden"
+        tests:
+          - not_null
+      - name: id_metodo_pago
+        description: "FK método pago"
+
+  - name: mart_dim_cliente
+    description: "Dimensión cliente con SCD Type 2"
+    columns:
+      - name: id_cliente
+        description: "PK dimensión"
+        tests:
+          - unique
+          - not_null
+      - name: correo_electronico
+        description: "Email cliente"
+        tests:
+          - unique
+      - name: es_vigente
+        description: "Registro vigente"
+        tests:
+          - not_null
+
+  - name: mart_dim_producto
+    description: "Dimensión producto con SCD Type 2"
+    columns:
+      - name: id_producto
+        description: "PK dimensión"
+        tests:
+          - unique
+          - not_null
+      - name: nombre_producto
+        description: "Nombre producto"
+        tests:
+          - not_null
+      - name: precio_actual
+        description: "Precio actual"
+        tests:
+          - not_null
+
+  - name: mart_dim_fecha
+    description: "Dimensión fecha calendario"
+    columns:
+      - name: id_fecha
+        description: "PK fecha (YYYYMMDD)"
+        tests:
+          - unique
+          - not_null
+      - name: fecha
+        description: "Fecha"
+        tests:
+          - unique
+          - not_null
+      - name: ano
+        description: "Año"
+        tests:
+          - not_null
+
+  - name: mart_dim_metodo_pago
+    description: "Dimensión método de pago"
+    columns:
+      - name: id_metodo_pago
+        description: "PK dimensión"
+        tests:
+          - unique
+          - not_null
+      - name: nombre
+        description: "Nombre método"
+        tests:
+          - not_null
+
+  - name: mart_dim_ubicacion
+    description: "Dimensión ubicación geográfica"
+    columns:
+      - name: id_ubicacion
+        description: "PK dimensión"
+        tests:
+          - unique
+          - not_null
+      - name: pais
+        description: "País"
+        tests:
+          - not_null

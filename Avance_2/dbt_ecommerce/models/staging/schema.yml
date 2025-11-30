@@ -1,0 +1,107 @@
+version: 2
+
+sources:
+  - name: ecommerce
+    description: "Tablas OLTP capa staging Avance 1"
+    database: ecommerce_raw
+    schema: staging
+    tables:
+      - name: usuarios
+        description: "Usuarios registrados"
+        columns:
+          - name: usuario_id
+            description: "ID único usuario"
+          - name: nombre
+            description: "Nombre usuario"
+          - name: email
+            description: "Email único"
+
+      - name: productos
+        description: "Catálogo de productos"
+        columns:
+          - name: producto_id
+            description: "ID único producto"
+          - name: nombre
+            description: "Nombre producto"
+          - name: precio
+            description: "Precio unitario"
+          - name: categoria_id
+            description: "FK categoría"
+
+      - name: ordenes
+        description: "Órdenes de compra"
+        columns:
+          - name: orden_id
+            description: "ID única orden"
+          - name: usuario_id
+            description: "FK usuario"
+          - name: total
+            description: "Monto total orden"
+          - name: estado
+            description: "Estado: Completed, Pending, Cancelled"
+
+      - name: detalle_ordenes
+        description: "Líneas de detalle por orden"
+        columns:
+          - name: orden_id
+            description: "FK orden"
+          - name: producto_id
+            description: "FK producto"
+          - name: cantidad
+            description: "Cantidad vendida"
+          - name: precio_unitario
+            description: "Precio en momento compra"
+
+      - name: metodos_pago
+        description: "Catálogo métodos de pago"
+        columns:
+          - name: metodo_id
+            description: "ID único método"
+          - name: nombre
+            description: "Nombre método"
+
+      - name: ordenes_metodos_pago
+        description: "Pagos asociados a órdenes"
+        columns:
+          - name: pago_id
+            description: "ID pago"
+          - name: orden_id
+            description: "FK orden"
+          - name: metodo_id
+            description: "FK método pago"
+          - name: monto_pagado
+            description: "Monto pagado"
+
+      - name: direcciones_envio
+        description: "Direcciones de envío"
+        columns:
+          - name: usuario_id
+            description: "FK usuario"
+          - name: ciudad
+            description: "Ciudad envío"
+          - name: provincia
+            description: "Provincia envío"
+          - name: departamento
+            description: "Departamento envío"
+          - name: distrito
+            description: "Distrito envío"
+          - name: calle
+            description: "calle envío"
+          - name: estado
+            description: "Estado envío"
+          - name: codigo_postal
+            description: "Codigo postal "
+          - name: pais
+            description: "País envío"
+
+      - name: resenas_productos
+        description: "Reseñas y calificaciones"
+        columns:
+          - name: resena_id
+            description: "ID reseña"
+          - name: producto_id
+            description: "FK producto"
+          - name: usuario_id
+            description: "FK usuario"
+          - name: calificacion
+            description: "Rating 1-5"
