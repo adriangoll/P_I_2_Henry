@@ -1,5 +1,13 @@
 # Avance 3: Documentación Completa DBT + Dimensiones Lentamente Cambiantes
 
+## Nota: Preguntas de Negocio
+
+Las 20 preguntas de negocio identificadas en Avance 1 se respondieron progresivamente:
+- **Avance 1:** Identificación + análisis exploratorio
+- **Avance 2-3:** Consultas SQL ejecutables en `Avance_2/sql/preguntas_negocio_respuestas.sql`
+
+9 de las 20 preguntas tienen queries SQL respondidas (limitado por datos disponibles).
+
 ## Resumen Ejecutivo
 
 Avance 3 completa la arquitectura dimensional con:
